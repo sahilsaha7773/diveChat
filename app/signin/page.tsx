@@ -31,10 +31,10 @@ export default function SignIn() {
   }
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
-      <div className="shadow-xl rounded-lg py-10 px-[100px] flex flex-col justify-center items-center">
+      <div className="shadow-xl rounded-lg py-10 lg:px-[100px] px-[30px] flex flex-col justify-center items-center mx-6">
         <img src='https://pbs.twimg.com/profile_images/1536942284637229056/6Misxh3C_400x400.jpg' className='w-24 h-24 mb-4' />
         <h1 className='text-2xl font-bold'>Dive Chat</h1>
-        <p className='text-lg text-center'>P2P (one on one, not group) chat app</p>
+        <p className='text-lg text-center'>P2P (one on one) chat app</p>
         <Button className="mt-5" variant={"outline"} onClick={(e) => handleSignIn()}>
           <FcGoogle className='mr-2 w-6 h-6' />
           Sign in with Google</Button>

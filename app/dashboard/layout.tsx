@@ -1,7 +1,6 @@
 "use client"
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
 import { useAllUsersContext } from '@/context/AllUsersContext';
 import { useAuthContext } from '@/context/AuthContext';
@@ -125,24 +124,24 @@ export default function DashboardLayout({
           </DropdownMenuContent>
         </DropdownMenu>
       </nav>
-      {/* <Button onClick={(e) => handleLogout()}>Log out</Button> */}
       <div className='flex h-full'>
-        <div className='flex flex-col w-[30%] border-r'>
+        <div className='flex flex-col min-w-fit border-r overflow-scroll'>
           {allUsers.map((user: any) => {
             return (
-              <div key={user.email} className='max-w-xl flex items-center border-b py-4 px-4 hover:cursor-pointer hover:bg-slate-50' onClick={() => {
-                router.push('/dashboard/' + user.uid)
-              }}>
-                <div className='mr-4'>
-                  <Avatar className='w-[60px] h-[60px] relative'>
-                    <AvatarImage width={"60px"} className='rounded-full' src={user.profile_picture} alt="Profile picture" />
+              <div key={user.email} className='max-w-xl flex items-center border-b py-4 px-4 hover:cursor-pointer hover:bg-slate-50 overflow-scroll lg:pr-16'
+                onClick={() => {
+                  router.push('/dashboard/' + user.uid)
+                }}>
+                <div className='mr-0 lg:mr-4 md:mr-4'>
+                  <Avatar className='w-[40px] h-[40px]  md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px] relative'>
+                    <AvatarImage className='rounded-full w-[40px] h-[40px]  md:w-[60px] md:h-[60px] lg:w-[60px] lg:h-[60px]' src={user.profile_picture} alt="Profile picture" />
                     {user.status == 'online' ?
                       <div className='w-3 h-3 bg-green-500 rounded-full absolute bottom-0 right-0'></div> :
                       <></>
                     }
                   </Avatar>
                 </div>
-                <div>
+                <div className='hidden md:block lg:block'>
                   <h1 className='text-lg font-semibold'>{user.name}</h1>
                   <p>{user.status}</p>
                   <p>{user.email}</p>
@@ -151,7 +150,7 @@ export default function DashboardLayout({
             )
           })}
         </div>
-        <div className='w-[70%] h-full'>
+        <div className='w-full h-full'>
           {children}
         </div>
       </div>

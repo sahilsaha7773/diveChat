@@ -1,4 +1,4 @@
-import { child, get, getDatabase, push, ref, set, update } from "firebase/database"
+import { child, get, getDatabase, push, ref, update } from "firebase/database"
 import { firebaseApp } from "./config"
 
 // Get a reference to the coversation in the database.

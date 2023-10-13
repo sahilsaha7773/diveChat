@@ -62,13 +62,13 @@ export default function Chat() {
   }, [auth.currentUser?.uid, userId])
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    messagesEndRef.current?.scrollIntoView()
   }
   useEffect(() => {
     scrollToBottom()
   })
   return (
-    <div className='h-screen w-full'>
+    <div className='h-screen w-full relative'>
       <nav className='flex flex-row items-center justify-between p-5 border-b'>
         <div className='flex flex-row items-center'>
           <Avatar className='w-[48px] h-[48px] relative overflow-visible'>
