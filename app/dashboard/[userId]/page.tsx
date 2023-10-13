@@ -11,7 +11,7 @@ import { Check, CheckCheck, SendIcon } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useRef } from 'react'
 
-export default function page() {
+export default function Chat() {
   const { userId }: { userId: string } = useParams();
   const { allUsers }: any = useAllUsersContext();
   const receiver = allUsers.filter((user: any) => user.uid == userId)[0];
