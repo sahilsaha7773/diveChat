@@ -5,7 +5,7 @@ import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
 import { useAllUsersContext } from '@/context/AllUsersContext';
 import { useAuthContext } from '@/context/AuthContext';
-import { firebaseApp, onMessageListener, requestForToken } from '@/firebase/config';
+import { firebaseApp } from '@/firebase/config';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { getAuth } from 'firebase/auth';
 import { get, getDatabase, onDisconnect, ref, set } from 'firebase/database';
@@ -17,7 +17,6 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  requestForToken() // request for FCM Token
   const { user }: any = useAuthContext(); // Get user from AuthContext
   const { allUsers }: any = useAllUsersContext(); // Get all users from AllUsersContext
 
@@ -93,19 +92,7 @@ export default function DashboardLayout({
 
   const { toast } = useToast()
 
-  onMessageListener()
-    .then((payload: any) => {
-      console.log('Message received. ', payload);
-      toast({
-        title: payload.notification.title,
-        description: payload.notification.body,
-        action: (
-          <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-        ),
-      })
-      // ...
-    }
-    )
+
   return (
     <div className='h-full'>
       <nav className='flex items-center justify-between p-4 border-b'>

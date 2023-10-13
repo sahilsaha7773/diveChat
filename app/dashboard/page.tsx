@@ -1,6 +1,4 @@
 "use client"
-import { messaging, requestForToken } from '@/firebase/config'
-import { getToken } from 'firebase/messaging';
 import React from 'react'
 
 export default function page() {

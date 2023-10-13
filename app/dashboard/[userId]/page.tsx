@@ -86,9 +86,11 @@ export default function Chat() {
       </nav>
       <div className='flex flex-col h-[65%] overflow-scroll w-full p-5 bg-gray-100'>
         {
-          messages.map((index: number, message: any) => {
+          messages.map((message: any, index: number) => {
             return (
-              <div key={index} className={message.senderId == auth.currentUser?.uid ? "p-4 shadow-xl rounded-lg m-4 w-fit ml-auto max-w-md bg-white" : "p-4 shadow-xl rounded-lg my-2 w-fit max-w-md bg-white"}>
+              <div
+                key={index}
+                className={message.senderId == auth.currentUser?.uid ? "p-4 shadow-xl rounded-lg m-4 w-fit ml-auto max-w-md bg-white" : "p-4 shadow-xl rounded-lg my-2 w-fit max-w-md bg-white"}>
                 {message.message}
                 <div className='flex text-xs justify-end'>
                   <span className='text-xs text-gray-500 mr-2'>
