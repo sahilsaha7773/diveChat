@@ -6,7 +6,7 @@ import { useAllUsersContext } from '@/context/AllUsersContext';
 import { firebaseApp } from '@/firebase/config';
 import { getMessagesRef, sendMessage } from '@/firebase/messages';
 import { getAuth } from 'firebase/auth';
-import { child, getDatabase, off, onValue, update } from 'firebase/database';
+import { child, off, onValue, update } from 'firebase/database';
 import { Check, CheckCheck, SendIcon } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useRef } from 'react'
@@ -59,7 +59,8 @@ export default function Chat() {
     return () => {
       off(getMessagesRef(auth.currentUser?.uid!, userId));
     }
-  }, [])
+  }, [auth.currentUser?.uid, userId])
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
@@ -85,9 +86,9 @@ export default function Chat() {
       </nav>
       <div className='flex flex-col h-[65%] overflow-scroll w-full p-5 bg-gray-100'>
         {
-          messages.map((message) => {
+          messages.map((index: number, message: any) => {
             return (
-              <div className={message.senderId == auth.currentUser?.uid ? "p-4 shadow-xl rounded-lg m-4 w-fit ml-auto max-w-md bg-white" : "p-4 shadow-xl rounded-lg my-2 w-fit max-w-md bg-white"}>
+              <div key={index} className={message.senderId == auth.currentUser?.uid ? "p-4 shadow-xl rounded-lg m-4 w-fit ml-auto max-w-md bg-white" : "p-4 shadow-xl rounded-lg my-2 w-fit max-w-md bg-white"}>
                 {message.message}
                 <div className='flex text-xs justify-end'>
                   <span className='text-xs text-gray-500 mr-2'>
