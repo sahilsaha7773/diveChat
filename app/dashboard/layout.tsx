@@ -26,7 +26,7 @@ export default function DashboardLayout({
 
   useEffect(() => {
     if (!user)
-      router.push('/signin')
+      router.push('/')
   })
 
   var isOfflineForDatabase = { // Offline presence
@@ -56,7 +56,7 @@ export default function DashboardLayout({
 
   useEffect(() => {
     if (!auth.currentUser) {
-      router.push('/signin')
+      router.push('/')
       return
     }
     const { uid, displayName, email, photoURL }: any = auth.currentUser;
